@@ -57,10 +57,14 @@ train.head()
 combine1 = [train]
 
 for train in combine1:
-    train['Salutation'] = train.Name.str.extract(' ([A-Za-z]+).', expand=False)
+    train['Salutation'] = train['Name'].str.extract(' ([A-Za-z]+).', expand=False)
 #print(train['Salutation'])
-tmp = train['Salutation'].value_counts()
-print(tmp)
+counts = train['Salutation'].value_counts()
+print(counts)
+```
+
+```python
+train['Salutation'].replace('Mlle')
 ```
 
 ```python

@@ -14,15 +14,26 @@ jupyter:
 
 refer to https://lp-tech.net/articles/0QUUd
 
+
+# なんだかツッコミどころ満載な感じがあったので，自分で再度分析してみた
+## 目的
+- pythonのお勉強
+- 自己消化
+
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import csv
 
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 train.head(10) # raw train data
+```
+
+```python
+train.info()
 ```
 
 - total 891
@@ -31,54 +42,67 @@ train.head(10) # raw train data
   - Cabin (204/891)
   - Embarked (889/891)
 
-```python
-train.info()
-```
 
-# replace strings with numbers
+replace strings with numbers
 
 ```python
 train = train.replace("male",0).replace("female",1).replace("S",0).replace("C",1).replace("Q",2)
 test = test.replace("male",0).replace("female",1).replace("S",0).replace("C",1).replace("Q",2)
 ```
 
-# fill N/A data by mean
+fill N/A Age by mean
 
 ```python
 train["Age"].fillna(train.Age.mean(), inplace=True)
-train["Embarked"].fillna(train.Embarked.mean(), inplace=True) #平均で埋めていいの？
-train.head()
+print(train["Embarked"].value_counts())
+```
+
+とりあえずEmbarkedのN/Aは'0'で埋める
+
+```python
+train["Embarked"].fillna(train.Embarked.mean(), inplace=True)
+train.info()
 ```
 
 # Classify Name
 
 ```python
-#pd.set_option("display.max_rows", 1000)
+pd.set_option("display.max_rows", 1000)
+#print(train["Name"])
+salutation = train["Name"].str.split(",",expand=True)
+salutation = salutation[1].str.split(".",expand=True)
+train["Salutation"] = salutation[0].str.replace(" ","")
+print(train["Salutation"].value_counts())
+```
+
+```python
+
 combine1 = [train]
 
 for train in combine1:
-    train['Salutation'] = train.Name.str.extract(' ([A-Za-z]+).', expand=False)
+    train['Salutation'] = train['Name'].str.extract(' ([A-Za-z]+).', expand=False)
 #print(train['Salutation'])
-tmp = train['Salutation'].value_counts()
-print(tmp)
+print(train['Salutation'].value_counts())
+```
+
+```python
+train['Salutation'] = train['Salutation'].replace('Mlle', 'Miss').replace('Ms', 'Miss').replace('Mme', 'Mrs')
+print(train['Salutation'].value_counts())
 ```
 
 ```python
 combine1 = [train]
-
 for train in combine1:
-    train['Salutation'] = train.Name.str.extract(' ([A-Za-z]+).', expand=False)
-for train in combine1:
-    train['Salutation'] = train['Salutation'].replace(['Lady', 'Countess','Capt', 'Col','Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
-    train['Salutation'] = train['Salutation'].replace('Mlle', 'Miss')
-    train['Salutation'] = train['Salutation'].replace('Ms', 'Miss')
-    train['Salutation'] = train['Salutation'].replace('Mme', 'Mrs')
     del train['Name']
+
 Salutation_mapping = {"Mr": 1, "Miss": 2, "Mrs": 3, "Master": 4, "Rare": 5} 
 for train in combine1: 
     train['Salutation'] = train['Salutation'].map(Salutation_mapping) 
     train['Salutation'] = train['Salutation'].fillna(0)
+print(train['Salutation'].value_counts())
+```
 
+```python
 for train in combine1: 
     train['Ticket_Lett'] = train['Ticket'].apply(lambda x: str(x)[0])
     train['Ticket_Lett'] = train['Ticket_Lett'].apply(lambda x: str(x)) 
@@ -99,6 +123,20 @@ for train in combine1:
     train['IsAlone'] = 0
     train.loc[train['FamilySize'] == 1, 'IsAlone'] = 1
 train.head(10)
+```
+
+```python
+combine1 = [train]
+
+for train in combine1:
+    train['Salutation'] = train.Name.str.extract(' ([A-Za-z]+).', expand=False)
+for train in combine1:
+    train['Salutation'] = train['Salutation'].replace(['Lady', 'Countess','Capt', 'Col','Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
+    train['Salutation'] = train['Salutation'].replace('Mlle', 'Miss')
+    train['Salutation'] = train['Salutation'].replace('Ms', 'Miss')
+    train['Salutation'] = train['Salutation'].replace('Mme', 'Mrs')
+    del train['Name']
+
 ```
 
 ```python
