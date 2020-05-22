@@ -1,0 +1,45 @@
+＝＝＝＝
+Project Next NLP 対話タスク 対話データ利用規約
+
+本データはMITライセンスのもと，無償・無保障にて研究用・商用を問わず利用できます．
+
+ただし，本データを利用して得た成果を学会等で発表する際には，可能な限り，
+本データについての下記の報告・論文を引用するとともに，NTTドコモの雑談対話APIへの参照を
+お願いします．
+
+○　研究報告
+Project Next NLP対話タスクにおける雑談対話データの収集と対話破綻アノテーション
+Chat dialogue collection and dialogue breakdown annotation in the dialogue task of Project Next NLP
+東中 竜一郎,船越 孝太郎
+人工知能学会　言語・音声理解と対話処理研究会 第72回, pp.45-50, 2014-12-15
+
+○　雑談対話APIサイト:
+https://www.nttdocomo.co.jp/service/developer/smart_phone/analysis/chat/
+
+なお，コーパス全体はProject Next NLP　対話タスク　参加者一同の著作物ですが，
+個々の発話文やアノテーションのデータはパブリックドメインです．これらを用いる限りにおいては，
+著作権表示の必要はありません．
+
+----------------------
+Copyright (c) 2015 Project Next NLP　対話タスク　参加者一同
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+＝＝＝＝
+
+改訂履歴
+2015/06/19

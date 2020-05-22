@@ -1,0 +1,23 @@
+[
+    {
+        "dis/loss": 0.05512198060750961,
+        "gen/loss": 5.693667411804199,
+        "epoch": 0,
+        "iteration": 100,
+        "elapsed_time": 6.1486814999999995
+    },
+    {
+        "dis/loss": 0.36631083488464355,
+        "gen/loss": 7.508214950561523,
+        "epoch": 0,
+        "iteration": 200,
+        "elapsed_time": 10.040888
+    },
+    {
+        "dis/loss": 0.015177938155829906,
+        "gen/loss": 5.4319305419921875,
+        "epoch": 0,
+        "iteration": 300,
+        "elapsed_time": 13.9304719
+    }
+]
